@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+.pnp/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Testing
+coverage/
+jest-html-reporters-*.html
+
+# Next.js
+.next/
+out/
+.vercel/
+
+# Build Outputs
+build/
+dist/
+
+# Environment Files
+.env
+.env.*
+!.env.example  # keep a sample env for reference
+
+# Miscellaneous
+.DS_Store
+*.pem
+*.log
+*.tsbuildinfo
+next-env.d.ts
+Thumbs.db
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+
+# Debug / Cache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.cache/
