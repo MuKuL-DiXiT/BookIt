@@ -1,13 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { getExperiences, searchExperiences } from '@/lib/api';
 import { Experience } from '@/types';
 import ExperienceCard from '@/components/ExperienceCard';
 import toast from 'react-hot-toast';
 
-export default function Home() {
+function ExperiencesContent() {
   const [experiences, setExperiences] = useState<Experience[]>([]);
   const [loading, setLoading] = useState(true);
   const searchParams = useSearchParams();
@@ -85,5 +85,32 @@ export default function Home() {
         </div>
       </section>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-white">
+        <section className="pt-20">
+          <div className="container mx-auto mt-12">
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                <div key={i} className="animate-pulse">
+                  <div className="h-56 rounded-t-2xl bg-gray-200"></div>
+                  <div className="space-y-3 rounded-b-2xl bg-white p-5">
+                    <div className="h-4 rounded bg-gray-200"></div>
+                    <div className="h-4 rounded bg-gray-200"></div>
+                    <div className="h-4 w-2/3 rounded bg-gray-200"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
+    }>
+      <ExperiencesContent />
+    </Suspense>
   );
 }
